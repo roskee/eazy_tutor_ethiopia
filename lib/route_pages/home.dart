@@ -4,6 +4,7 @@ import 'package:eazy_tutor_ethiopia/state_management/events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+///This is the home page of the app
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 

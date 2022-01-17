@@ -4,6 +4,7 @@ import 'package:eazy_tutor_ethiopia/state_management/events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+///This provides the login interface for the user
 class LogIn extends StatelessWidget {
   const LogIn({Key? key}) : super(key: key);
 
