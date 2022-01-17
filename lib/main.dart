@@ -19,7 +19,10 @@ class EazyTutorialLauncher extends StatelessWidget {
         create: (context) => EazyTutorBloc(),
         child: BlocBuilder<EazyTutorBloc, EazyTutorState>(
             builder: (context, state) => MaterialApp(
-                  theme: ThemeData(primarySwatch: Colors.green),
+                  theme: ThemeData(
+                      backgroundColor: Colors.white,
+                      primarySwatch: Colors.green,
+                      selectedRowColor: Colors.green[200]),
                   home: state.isLoggedIn ? const Home() : const LogIn(),
                 )));
   }
