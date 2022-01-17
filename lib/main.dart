@@ -1,5 +1,9 @@
 import 'package:eazy_tutor_ethiopia/route_pages/home.dart';
+import 'package:eazy_tutor_ethiopia/route_pages/login.dart';
+import 'package:eazy_tutor_ethiopia/state_management/bloc_state.dart';
+import 'package:eazy_tutor_ethiopia/state_management/eazy_tutor_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const EazyTutorialLauncher());
@@ -11,9 +15,12 @@ class EazyTutorialLauncher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {'/': (context) => const Home()},
-    );
+    return BlocProvider<EazyTutorBloc>(
+        create: (context) => EazyTutorBloc(),
+        child: BlocBuilder<EazyTutorBloc, EazyTutorState>(
+            builder: (context, state) => MaterialApp(
+                  theme: ThemeData(primarySwatch: Colors.green),
+                  home: state.isLoggedIn ? const Home() : const LogIn(),
+                )));
   }
 }
