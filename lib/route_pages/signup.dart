@@ -1,3 +1,4 @@
+import 'package:eazy_tutor_ethiopia/components/loading_button.dart';
 import 'package:eazy_tutor_ethiopia/state_management/bloc_state.dart';
 import 'package:eazy_tutor_ethiopia/state_management/eazy_tutor_state.dart';
 import 'package:flutter/material.dart';
@@ -15,75 +16,83 @@ class SignUpPage extends StatelessWidget {
       body: Center(
           child: SizedBox(
               width: 300,
-              height: 560,
+              height: 580,
               child: Card(
                 elevation: 3,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Sign up to get started',
-                            style: TextStyle(fontSize: 16),
-                          )),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'First Name',
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Last Name',
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Email',
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              hintText: 'Password',
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              hintText: 'Repeat Password',
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
-                        ),
-                      ),
-                      BlocBuilder<EazyTutorBloc, EazyTutorState>(
-                          builder: (context, state) => ElevatedButton(
-                              onPressed: () {
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Sign up to get started',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                  hintText: 'First Name',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10)))),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                  hintText: 'Last Name',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10)))),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                  hintText: 'Email',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10)))),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10)))),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  hintText: 'Repeat Password',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10)))),
+                            ),
+                          ),
+                          BlocBuilder<EazyTutorBloc, EazyTutorState>(
+                            builder: (context, state) => LoadingButton(
+                              futureOnPressed: () async {
+                                return Future.delayed(
+                                    const Duration(seconds: 5), () {
+                                  return true;
+                                });
+                              },
+                              onLoadingFinished: (value) {
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -103,15 +112,20 @@ class SignUpPage extends StatelessWidget {
                               child: const Padding(
                                 padding: EdgeInsets.only(left: 8, right: 8),
                                 child: Text('Sign Up'),
-                              ))),
-                      TextButton(
-                        child: const Text("I already have an account"),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      )
-                    ],
-                  ),
+                              ),
+                              animation: const CircularProgressIndicator(),
+                            ),
+                          ),
+                          TextButton(
+                            child: const Text("I already have an account"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ))),
     );
