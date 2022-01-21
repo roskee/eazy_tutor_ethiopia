@@ -23,7 +23,7 @@ class EazyTutorialLauncher extends StatelessWidget {
                       backgroundColor: Colors.white,
                       primarySwatch: Colors.green,
                       selectedRowColor: Colors.green[200]),
-                  home: state.isLoggedIn ? const Home() : const LogIn(),
+                  home: state.isLoggedIn ? const Home() : const LogInPage(),
                 )));
   }
 }

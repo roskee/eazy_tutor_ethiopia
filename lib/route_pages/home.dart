@@ -28,17 +28,45 @@ class Home extends StatelessWidget {
                         style: TextStyle(color: Theme.of(context).primaryColor),
                       ),
                       actions: [
+                        // Search button at the top
                         IconButton(
+                            tooltip: 'Search',
                             onPressed: () {},
                             icon: Icon(
                               Icons.search,
                               color: Theme.of(context).primaryColor,
                             )),
-                        VerticalDivider(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.person,
-                                color: Theme.of(context).primaryColor))
+                        const VerticalDivider(),
+                        // Profile button at the top
+                        BlocBuilder<EazyTutorBloc, EazyTutorState>(
+                            builder: (context, state) => PopupMenuButton(
+                                padding: const EdgeInsets.all(0),
+                                tooltip: 'Your Profile',
+                                //offset: const Offset(-40, 40),
+                                elevation: 3,
+                                itemBuilder: (context) => <PopupMenuEntry>[
+                                      PopupMenuItem(
+                                          child: DrawerHeader(
+                                        child: TextButton.icon(
+                                            onPressed: null,
+                                            icon: const Icon(Icons.person),
+                                            label: const Text('View Profile')),
+                                      )),
+                                      PopupMenuItem(
+                                          padding: const EdgeInsets.all(0),
+                                          onTap: ()=>
+                                            BlocProvider.of<EazyTutorBloc>(
+                                                    context)
+                                                .add(LogoutEvent()),
+                                          child: const ListTile(
+                                            title: Text('Log Out'),
+                                          ))
+                                    ],
+                                child: IconButton(
+                                    onPressed: null,
+                                    icon: Icon(Icons.person,
+                                        color:
+                                            Theme.of(context).primaryColor))))
                       ],
                     ),
                     SliverAppBar(
@@ -86,7 +114,7 @@ class Home extends StatelessWidget {
                       children: [
                         Card(
                           child: ListView(
-                              physics: ScrollPhysics(),
+                              physics: const ScrollPhysics(),
                               children:
                                   List.generate(20, (index) => TutorCard())),
                         ),

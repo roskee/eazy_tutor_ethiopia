@@ -1,3 +1,4 @@
+import 'package:eazy_tutor_ethiopia/route_pages/signup.dart';
 import 'package:eazy_tutor_ethiopia/state_management/bloc_state.dart';
 import 'package:eazy_tutor_ethiopia/state_management/eazy_tutor_state.dart';
 import 'package:eazy_tutor_ethiopia/state_management/events.dart';
@@ -5,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///This provides the login interface for the user
-class LogIn extends StatelessWidget {
-  const LogIn({Key? key}) : super(key: key);
+class LogInPage extends StatelessWidget {
+  const LogInPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,10 @@ class LogIn extends StatelessWidget {
                               ))),
                       TextButton(
                         child: const Text("I don't have an account"),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const SignUpPage()));
+                        },
                       )
                     ],
                   ),
