@@ -3,7 +3,6 @@ import 'package:eazy_tutor_ethiopia/state_management/bloc_state.dart';
 import 'package:eazy_tutor_ethiopia/state_management/eazy_tutor_state.dart';
 import 'package:eazy_tutor_ethiopia/state_management/events.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///This is the home page of the app
@@ -54,10 +53,10 @@ class Home extends StatelessWidget {
                                       )),
                                       PopupMenuItem(
                                           padding: const EdgeInsets.all(0),
-                                          onTap: ()=>
-                                            BlocProvider.of<EazyTutorBloc>(
-                                                    context)
-                                                .add(LogoutEvent()),
+                                          onTap: () =>
+                                              BlocProvider.of<EazyTutorBloc>(
+                                                      context)
+                                                  .add(LogoutEvent()),
                                           child: const ListTile(
                                             title: Text('Log Out'),
                                           ))
@@ -112,15 +111,13 @@ class Home extends StatelessWidget {
                     SliverFillRemaining(
                         child: TabBarView(
                       children: [
-                        Card(
-                          child: ListView(
-                              physics: const ScrollPhysics(),
-                              children:
-                                  List.generate(20, (index) => TutorCard())),
-                        ),
-                        Text('hi'),
-                        Text('hi'),
-                        Text('hi'),
+                        ListView(
+                            physics: const ScrollPhysics(),
+                            children: List.generate(
+                                20, (index) => const TutorCard())),
+                        const Text('hi'),
+                        const Text('hi'),
+                        const Text('hi'),
                       ],
                     ))
                     // SliverList(
